@@ -1,0 +1,74 @@
+*, *::before, *::after {margin: 0; padding: 0; box-sizing: border-box; font-family: var(--ff-primary);}
+h1,h2,h3,h4,h5,h6 {margin: 0; padding: 0;}
+ul, ol {margin: 0; padding: 0;}
+li {list-style: none inside;}
+a {text-decoration: none; color: #000; cursor: pointer; padding: 0; margin: 0;}
+.container {max-width: var(--container-size); margin-inline: auto; padding-inline: var(--container-padding);}
+
+
+@font-face {
+    font-family: "Robot";
+    src: url('./assets/fonts/Roboto-Regular.ttf');
+    font-weight: 400 800;
+    font-display: swap;
+}
+
+:root{
+    --container-size : 1300px;
+    /* container padding */
+    --container-padding : 15px;
+    /* font family */
+    --ff-primary : "Robot", Arial, sans-serif;
+    /* colors */
+    --primary-color: #ff6f61;
+    --secondary-color: #1f1f1f;
+}
+/* ----------------------- */
+/* ---__HEADER__--- */
+/* ----------------------- */
+header {background-color: var(--secondary-color); padding-block: 15px;}
+header .wrapper {display: flex; align-items: center; justify-content: space-between;}
+header .logo span {font-size: 40px; color: var(--primary-color);}
+header ul {display: flex; align-items: center; gap: 15px; color: #fff;}
+header a {display: flex; align-items: center; color: #fff;}
+header a .material-icons {font-size: 30px; color: #fff;}
+/* ----------------------- */
+/* main content */
+/* ----------------------- */
+.mainContent {max-width: 750px; display: flex; flex-direction: column; align-items: center; border: 2px solid var(--secondary-color); margin-block: 40px; margin-inline: auto;}
+.mainContent .wrapper {display: flex; flex-direction: column; align-items: center; background-color: var(--secondary-color); padding-block: 15px; width: 100%;}
+.mainContent .title h1 {display: flex; align-items: center; justify-content: start; gap: 10px; color: var(--primary-color);  margin-bottom: 10px;}
+.mainContent .input-field {padding-left: 4px;width: 100%; max-width: 450px; border: 2px solid #fff; border-radius: 4px; position: relative; z-index: 2;}
+.mainContent .input-field form {display: flex; align-items: center;}
+.mainContent .input-field input {width: 100%; font-size: 20px; display: block; color: #fff; background-color: transparent; padding: 5px; border: none; outline: none; height: 100%;}
+.mainContent input::placeholder {color: #ffffff67;}
+.mainContent .input-field button {width: 70px; display: block; height: auto; align-self: stretch; cursor: pointer; border: none; outline: none; position: relative; z-index: 3;}
+.mainContent .content, .allData {min-height: 200px; display: flex; align-items: center; justify-content: center;}
+.mainContent .content {color: gray;}
+.mainContent .active {border: 2px solid var(--primary-color);}
+
+/* ----------------------- */
+/* Adding style to all data of todo list */
+/* ----------------------- */
+.mainContent .allData {display: none; justify-content: start; flex-direction: column; gap: 10px; width: 80%; margin-block: 20px;}
+.mainContent .box {width: 100%; display: flex; justify-content: space-between;}
+
+
+.mainContent .box {width: 100%; display: flex; justify-content: space-between; align-items: center; padding-bottom: 5px; border-bottom: 1px solid #00000049;}
+.delAll {display: flex; align-items: center; padding: 5px 10px; border-radius: 4px; border: 2px solid var(--secondary-color); background-color: transparent; margin-bottom: 10px; display: none;}
+.mainContent .box .btnContent {display: flex; align-items: center; gap: 5px;}
+.allData .box button {display: flex; align-items: center; justify-content: center; background-color: transparent; border-radius: 4px; padding: 4px; border: 2px solid var(--secondary-color); cursor: pointer;}
+.allData .box button:hover {background-color: var(--secondary-color); color: var(--primary-color); transition: .4s;}
+.mainContent .textContent {display: flex; align-items: center; gap: 7px;}
+.mainContent .textContent > :nth-child(2) {font-size: 30px;}
+.mainContent .textContent .list {text-decoration: line-through; color: gray; font-style: italic;}
+.mainContent .textContent > :first-child {height: 13px; width: 13px; border: 1px solid var(--secondary-color); border-radius: 50%; cursor: pointer; padding: 1px; } 
+.mainContent .textContent > :first-child > :first-child {height: 100%; width: 100%; display: none; background-color: var(--primary-color); border-radius: 50%;}
+.mainContent .textContent > :first-child .active {display: block;}
+
+/* ----------------------- */
+/* delete all button */
+/* ----------------------- */
+.delAll:hover {background-color: var(--secondary-color); color: var(--primary-color); cursor: pointer; transition: 0.4s;}
+
+

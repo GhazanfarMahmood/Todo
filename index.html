@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO | using typescript</title>
+
+    <!-- __CSS LINK__ -->
+    <link rel="stylesheet" href="style.css" />
+
+     <!-- __LINK FOR GOOGLE ICONS__ -->
+     <link
+     href="https://fonts.googleapis.com/icon?family=Material+Icons"
+     rel="stylesheet"
+   />
+  </head>
+  <body>
+    <header>
+        <div class="container">
+            <div class="wrapper">
+                <div class="logo">
+                    <span class="material-icons">
+                        fact_check
+                    </span>
+                </div>
+                <ul>
+                    <li><a href="#">
+                        <span class="material-icons">
+                        home</span>
+                        Home</a></li>
+                    <li>Todo List</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section class="mainContent">
+        <div class="wrapper">
+            <div class="title">
+                <h1>Enter Things To Add ✔</h1>
+            </div>
+            <div class="input-field">
+                <form>
+                <input type="text" placeholder="Enter an Item" required id="inputValue" autocomplete="none" > 
+                <button class="addBtn">Add</button>
+                </form>
+            </div>
+        </div>
+        <div class="content">
+            <h3>There's no item to show please add an item</h3>
+        </div>
+        <div class="allData">
+        </div>
+        <button class="delAll">
+            <span class="material-icons">delete</span>
+        Delete All</button>
+    </section>
+
+
+    <!-- ? Learning of Event delegation by free code camp -->
+     <!-- <style>
+        div{
+            width: 100%;
+            height: 500px;
+            background-color: lightgoldenrodyellow;
+        }
+     </style>
+    <div>
+        <span>
+            <button>Click Me!</button>
+        </span>
+    </div>
+
+    <script> 
+        const div = document.getElementsByTagName('div')[0]
+
+        // one way to add the event listener is by targeting the tag name and another is hiding all other just by showing only to that element on which we want to add click
+        div.addEventListener("click", (event) =>{
+            if(event.target.tagName === "BUTTON"){
+                console.log("button was clicked")
+            }
+        })
+    </script> -->
+
+
+    <!-- <div>
+        <button>Button 1</button>
+        <button>Button 2</button>
+        <button>Button 3</button>
+        <button>Button 4</button>
+        <button>Button 5</button>
+        <button>Button 6</button>
+    </div> -->
+
+    <!-- <script>
+        // const buttons = document.querySelectorAll("button")
+
+        // buttons.forEach((button) =>{
+        //     button.addEventListener("click", (event) =>{
+        //         console.log(event.target.innerText)
+        //     })
+        // })
+
+        // const div = document.querySelector("div")
+
+        // div.addEventListener("click", (e) =>{
+        //     if(e.target.tagName === 'BUTTON'){
+        //         console.log(e.target.innerText)
+        //     }
+        // })
+    </script> -->
+
+
+    <!-- ! in upper function when you click on button the event doesn't stop on button it also go to parent of button which is span and than it go to div which is also parent of span and than to body and so on go to html and this is known as EVENT BUBBLING -->
+
+    <!-- <style>
+        button { position: fixed; bottom: 10%; right: 5%; background-color: purple; border: 0; border-radius: 100%; padding: 10px 15px; font-size: 20px; font-weight: bold; color: #fff; cursor: pointer;}
+    </style>
+    <div class="box">
+    </div> -->
+
+
+
+    <script src="./dist/script.js"></script>
+  </body>
+</html>
