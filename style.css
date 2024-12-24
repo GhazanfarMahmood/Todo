@@ -61,10 +61,10 @@ header a .material-icons {font-size: 30px; color: #fff;}
 .allData .box button:hover {background-color: var(--secondary-color); color: var(--primary-color); transition: .4s;}
 .mainContent .textContent {display: flex; align-items: center; gap: 7px;}
 .mainContent .textContent > :nth-child(2) {font-size: 30px;}
-.mainContent .textContent .list {text-decoration: line-through; color: gray; font-style: italic;}
+.mainContent .textContent.list {text-decoration: line-through; color: gray; font-style: italic;}
 .mainContent .textContent > :first-child {height: 13px; width: 13px; border: 1px solid var(--secondary-color); border-radius: 50%; cursor: pointer; padding: 1px; } 
-.mainContent .textContent > :first-child > :first-child {height: 100%; width: 100%; display: none; background-color: var(--primary-color); border-radius: 50%;}
-.mainContent .textContent > :first-child .active {display: block;}
+.mainContent .textContent .checked {height: 100%; width: 100%; display: none; background-color: var(--primary-color); border-radius: 50%;}
+.mainContent .textContent .checked.checkboxActive {display: block;}
 
 /* ----------------------- */
 /* delete all button */

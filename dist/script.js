@@ -37,7 +37,7 @@ const addDataToDOM = () => {
     <div class="box" id="${index}">
         <div class="textContent">
             <div>
-                <span></span>
+                <span class="checked"></span>
             </div>
             <h1>${item}</h1>
         </div>
@@ -52,10 +52,6 @@ const addDataToDOM = () => {
     //  const parentCheckBox = document.querySelector(".mainContent .textContent > :first-child")
     //  const innerSpan = document.querySelector('.mainContent .textContent > :first-child > :first-child')
     //  const heading = document.querySelector(".mainContent .textContent > :nth-child(2)")
-    //  parentCheckBox?.addEventListener("click", () =>{
-    //     innerSpan?.classList.toggle("active")
-    //     heading?.classList.toggle("list")
-    //  })
     // this work very fine but there is an issue is that it create a eventListener for every parentCheckBox , if we have a thousand parentCheckBox  than we got a thousand eventListener on every checkBox that cause a memory loss 
     // parentCheckBox.addEventListener("click", () =>{
     //     innerSpan.classList.toggle("active")
@@ -63,7 +59,7 @@ const addDataToDOM = () => {
     // })
     //   })
 };
-//? addEvent Listener on  add button to add data in a array
+//? addEvent Listener on add button to add data in a array
 addBtn === null || addBtn === void 0 ? void 0 : addBtn.addEventListener("click", () => {
     if (inputData === null || inputData === void 0 ? void 0 : inputData.value.trim()) {
         array.push(inputData === null || inputData === void 0 ? void 0 : inputData.value);
@@ -74,7 +70,7 @@ addBtn === null || addBtn === void 0 ? void 0 : addBtn.addEventListener("click",
             removeActiveClass();
         }
         // when you want to clear all input fields when you click on submit button then you have to invoke the reset function to form element
-        // form?.reset()
+        form === null || form === void 0 ? void 0 : form.reset();
         // ? calling this function so that when data is added to array than this data will be shown on screen
         addDataToDOM();
         content === null || content === void 0 ? void 0 : content.style.display = "none";
@@ -98,15 +94,13 @@ addBtn === null || addBtn === void 0 ? void 0 : addBtn.addEventListener("click",
 // but can see on dataToShow
 // console.log(dataToShow)
 // !Now we will use event delegation to work with upper problem
-dataToShow === null || dataToShow === void 0 ? void 0 : dataToShow.addEventListener("click", (e) => {
-    const boxes = dataToShow.querySelectorAll(".box");
-    boxes.forEach((box, id) => {
-        const textContent = box.querySelector(".textContent");
-        const btnContent = box.querySelector(".btnContent");
-        const innerSpan = box.querySelector(".mainContent .textContent > :first-child > :first-child");
-        const heading = box.querySelector(".mainContent .textContent > :nth-child(2)");
-        // if
-    });
+document.addEventListener("click", (e) => {
+    const textContent = e.target.closest(".mainContent .textContent");
+    const checkbox = textContent.querySelector(".mainContent .textContent .checked");
+    if (checkbox) {
+        textContent.classList.toggle("list");
+        checkbox.classList.toggle("checkboxActive");
+    }
 });
 // When you click or interact with an element on a webpage, that action (event) doesn't just stay with that element. Instead, it "bubbles up" through its parent elements, all the way to the top of the page (the <html> element). This process is called event propagation or bubbling.
 // For example:
@@ -126,3 +120,35 @@ dataToShow === null || dataToShow === void 0 ? void 0 : dataToShow.addEventListe
 // 8. it should show the time and data in front of that item in small fonts
 // 9. it should sent the item at last which have the line through 
 // 10. last use the local storage to store the data and get data from local storage and after that modified that data
+// to access box that is parent div through class
+// const box = document.querySelector(".box")
+// to access button through id
+// const btn = document.querySelector("#add")
+// storing a numeric value in a variable so that whenever a card is created the numeric value of count will be increment by 1 and store in count and than that value will be show on UI through each card
+// let count = 0;
+// the below function is used to create a element that is div and passing value of count in that div and than adding that div as a child to box that is parent div and incrementing value of that div whenever addingCard function run
+// const addingCard = () =>{
+//     const card = document.createElement("div")
+//     card.classList.add("card")
+//     card.innerText = count++;
+//     box?.appendChild(card)
+// }
+// if you call this function than a div become with the value of count that is 0 and that div will be render and show on the UI of page
+// addingCard()
+// adding evenlistener click on button so that when ever i click on button a box become and that box will be show on UI and after the first box
+// btn?.addEventListener("click", () =>{
+//     addingCard()
+// })
+// adding a global event listener to remove the card
+// window.addEventListener("click", (event) =>{
+// getting all card and storing them into a single variable, if i declare variable outside the function than it get the card that is not yet declare so that i didn't got any type of card
+// const cards = document.querySelectorAll(".card")
+// this is used to loop through every card so that i can remove the card on which i click
+// cards.forEach((card) =>{
+// passing a logic whenever i click on card than that card will got display none
+//         if(event.target === card){
+//             card.style.display = "none"
+//             console.log(card)
+//         }
+//     })
+// })
