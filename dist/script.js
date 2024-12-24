@@ -84,6 +84,10 @@ addBtn === null || addBtn === void 0 ? void 0 : addBtn.addEventListener("click",
         deleteAllBtn.style.display = "none";
     }
 });
+deleteAllBtn === null || deleteAllBtn === void 0 ? void 0 : deleteAllBtn.addEventListener("click", () => {
+    array.splice(0, array.length);
+    console.log(array);
+});
 // this is also a way to define the type to an element in typescript
 // const checkBox : HTMLDivElement | null = document.querySelector(".allData .mainContainer .box") 
 // const checkBox = document.querySelectorAll(".mainContent .textContent > :nth-child(2) > :first-child") as NodeListOf<HTMLSpanElement>
@@ -102,6 +106,23 @@ document.addEventListener("click", (e) => {
         checkbox.classList.toggle("checkboxActive");
     }
 });
+// slice method doesn't alter the original array, it is basically used to return an array or portion of an array.
+// slice(optional start parameter, optional end parameter)
+// if the start parameter of slice is greater than end parameter than it return an empty array.
+// splice
+// while on the other hand splice method is used to change content in original array. it is not only used to remove any type of content from an array or for any given portion but also used to add any type of content to an array.
+// splice(start, optional delete count, optional items to add)
+// const food = ["apple", "banana", "orange", "mango"];
+// console.log(food.slice(food.length, 2))
+// console.log(food.slice(-2))
+// in splice if you modify array directly in a console than it doesn't work and also you can't declare it to another variable so first you define an array than you modify than you log the array
+// const food = ["apple", "banana", "orange", "mango"];
+// food.splice(food.length,food.length, "");
+// console.log(food)
+// for removing an item from an array and this will give you entire array accept the index you have selected
+// const food = ["apple", "banana", "orange", "mango"];
+// food.splice(0, 1);
+// console.log(food)
 // When you click or interact with an element on a webpage, that action (event) doesn't just stay with that element. Instead, it "bubbles up" through its parent elements, all the way to the top of the page (the <html> element). This process is called event propagation or bubbling.
 // For example:
 // Imagine you click a button inside a <div> on a webpage. The event first happens on the button, then moves to the <div>, then to the <body>, and finally to the <html>. Each of these levels can "listen" for the event and respond to it.
