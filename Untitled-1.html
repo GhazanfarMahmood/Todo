@@ -1,0 +1,8 @@
+Things i learn while doing code:
+1. first you can use .tirm() method after value of input field to remove any extra space from the input field.
+2. event.stopPropagation() is used to prevent the event from bubbling up the DOM tree, preventing any parent elements from being.  --> not complete RnD <--
+3. event.preventDefault() is used to prevent the default behavior of an event from happening. but it will not prevent the event from bubbling up the DOM tree. and only used for form submission.
+4. you can't add event listener to a dynamically created element. you need to add event listener after the element is created. as when the page load than script is also loaded and it will try to add event listener to the element which is created after the page load. so it will throw an error. for this purpose we used event delegation.
+5. in event delegation we use event.target to parent that is already present in dom which is not created dynamically. and then we use event.target to add eventListener to other child which is dynamically created.
+6. when you added event delegation to parent element than you can't get nested child directlly through event.target first you define one of the child of parent element and then you can get nested child through event.target.
+7. the next thing learn is getComputedStyle() --> not completed RnD <--

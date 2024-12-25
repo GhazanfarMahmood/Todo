@@ -86,20 +86,24 @@ addBtn?.addEventListener("click", () =>{
         // ? calling this function so that when data is added to array than this data will be shown on screen
         addDataToDOM()
         content?.style.display = "none"
-        deleteAllBtn.style.display = "flex"
         dataToShow.style.display = "flex"
 
     }else if(!inputData?.value){
         // setAttribute is used to create any type of attribute in an element and for required you only pass single or double quotes as the second argument 
        inputData?.setAttribute("required", "")
        console.log("Please enter a value")
-       deleteAllBtn.style.display = "none"
+    }
+    const style = getComputedStyle(dataToShow)
+    if(style.display === "flex"){
+        deleteAllBtn.style.display = "flex"
     }
 })
 
 deleteAllBtn?.addEventListener("click", () =>{
    array.splice(0, array.length)
-   console.log(array)
+   content.style.display = "flex"
+   dataToShow.style.display = "none"
+   deleteAllBtn.style.display = "none"
 })
 
 // this is also a way to define the type to an element in typescript
@@ -218,3 +222,6 @@ document.addEventListener("click", (e) => {
 //         }
 //     })
 // })
+
+// GET COMPUTED STYLE
+
