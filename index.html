@@ -34,26 +34,28 @@
         </div>
     </header>
 
-    <section class="mainContent">
-        <div class="wrapper">
-            <div class="title">
-                <h1>Enter Things To Add ✔</h1>
+    <section class="box">
+        <div class="mainContent">
+            <div class="wrapper">
+                <div class="title">
+                    <h1>Enter Things To Add ✔</h1>
+                </div>
+                <div class="input-field">
+                    <form>
+                    <input type="text" placeholder="Enter an Item" required id="inputValue" autocomplete="none" > 
+                    <button class="addBtn">Add</button>
+                    </form>
+                </div>
             </div>
-            <div class="input-field">
-                <form>
-                <input type="text" placeholder="Enter an Item" required id="inputValue" autocomplete="none" > 
-                <button class="addBtn">Add</button>
-                </form>
+            <div class="content">
+                <h3>There's no item to show please add an item</h3>
             </div>
+            <div class="allData">
+            </div>
+            <button class="delAll">
+                <span class="material-icons">delete</span>
+            Delete All</button>
         </div>
-        <div class="content">
-            <h3>There's no item to show please add an item</h3>
-        </div>
-        <div class="allData">
-        </div>
-        <button class="delAll">
-            <span class="material-icons">delete</span>
-        Delete All</button>
     </section>
 
 
@@ -123,6 +125,11 @@
     <button id="add">+</button> -->
 
     <!-- ! in upper function there is a div with class name that is box and button, button is used to add another div that is card inside box -->
+
+    <!-- this is the p tag to check the computed style -->
+    <!-- <p>Hell world</p> -->
+
+    <!-- <h4>This is the heading.</h4> -->
 
     <script src="./dist/script.js"></script>
   </body>

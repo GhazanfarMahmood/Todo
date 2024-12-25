@@ -177,4 +177,21 @@ document.addEventListener("click", (e) => {
 //         }
 //     })
 // })
-// GET COMPUTED STYLE
+// GET COMPUTED STYLE is the js method.
+//  in short, getComputedStyle() helps you find out the final style of an element after all the CSS rules have been applied.
+// you not only get the the computed style of element but you can also get the style of pesudo elment like ::before and ::after.
+// only for simple styling of an element we can use getComputedStyle(element)
+// and for the computed style of pesudo element before and after getComputedStyle(element, pesudoElt)
+// the style of an element also got updated when you check through getComputedStyle(element) method by updating css means if you change the style of element through js than it will also get updated in getComputedStyle(element) method.
+// and you can also check the live updated style of an element when you update style through css but there is an difference.
+// Immediate update with JavaScript changes: When you change styles via JavaScript, getComputedStyle() immediately reflects the changes.
+// Delayed update with CSS changes: When you modify styles via CSS (in stylesheets), getComputedStyle() will reflect those changes, but the update might take some time depending on the rendering cycle of the browser (for example, after a reflow/repaint happens).
+// you can get error in following way, first when you try to get the style of an element that is not yet rendered than you will get error
+// and second when you pass wrong pesudo element than you will get error.
+// TO CHECK THE COMPUTED STYLE
+// const phara = document.querySelector("p");
+// const style = window.getComputedStyle(phara);
+// console.log(style.getPropertyValue("font-size"))
+// const heading = document.querySelector("h4")
+// const afterStyle = getComputedStyle(heading, "::after");
+// console.log(afterStyle.getPropertyValue("position"))
