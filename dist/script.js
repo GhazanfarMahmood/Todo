@@ -1,32 +1,14 @@
 "use strict";
 const inputData = document.querySelector("input");
-const inputField = document.querySelector(".input-field");
 const addBtn = document.querySelector(".mainContent .input-field form > :last-child");
 const content = document.querySelector(".content");
 const form = document.querySelector("form");
 const dataToShow = document.querySelector(".allData");
 const deleteAllBtn = document.querySelector(".mainContent .delAll");
-// ? adding a function to remove the class active from input field which work as, to add the active class
-function removeActiveClass() {
-    inputField === null || inputField === void 0 ? void 0 : inputField.classList.remove("active");
-}
-// ? this function is work as to --__ stop propagation __-- and used to add active class when we click on inputField
-inputField === null || inputField === void 0 ? void 0 : inputField.addEventListener("click", (event) => {
-    event.stopPropagation();
-    inputField.classList.add("active");
-});
-// ? this is used to remove Active class when we click on window 
-window.addEventListener("click", () => {
-    removeActiveClass();
-});
 // ? this is used to prevent the page from reloading after submitting the data
 form === null || form === void 0 ? void 0 : form.addEventListener("submit", (e) => {
     e.preventDefault();
 });
-// ? this is used to remove the eventListener from inputField that is click so that we can't see the border on input field  --__ still have to confirm __--
-function removeEvent() {
-    inputField === null || inputField === void 0 ? void 0 : inputField.removeEventListener("click", () => { });
-}
 const array = [];
 //! 3. why only one data is store at one time in an array while in form it store data one after another
 // array should have to come outside the function because everytime when we invoke the event this will start from empty array and store data in it and when we again click on addData button it will again start from empty array as the previous data remove because of invoke of event
@@ -65,10 +47,6 @@ addBtn === null || addBtn === void 0 ? void 0 : addBtn.addEventListener("click",
         array.push(inputData === null || inputData === void 0 ? void 0 : inputData.value);
         inputData === null || inputData === void 0 ? void 0 : inputData.value = "";
         inputData.removeAttribute("required");
-        if (inputData.value === "") {
-            removeEvent();
-            removeActiveClass();
-        }
         // when you want to clear all input fields when you click on submit button then you have to invoke the reset function to form element
         form === null || form === void 0 ? void 0 : form.reset();
         // ? calling this function so that when data is added to array than this data will be shown on screen
@@ -195,3 +173,41 @@ document.addEventListener("click", (e) => {
 // const heading = document.querySelector("h4")
 // const afterStyle = getComputedStyle(heading, "::after");
 // console.log(afterStyle.getPropertyValue("position"))
+// What is event propagation?
+// event propagation is the process by which events are handle.
+// it has three phases one is capturing, second is target and third is bubbling phase.
+// capturing phase start from the top most ancestor of dom than reach to the deepest child of dom. 
+// this phase is also known as trickling phase.
+// after the capturing phase target phase start in which the event react to the targeted element.
+// and after the target phase the bubbling phase started in which the event again start from bottom and than move toward the top most ancestor of dom.
+// const parentDiv = document.querySelector("#parent");
+// const childDiv = document.querySelector("#child");
+// document?.addEventListener("click", (e) =>{
+//     e.stopPropagation()
+//     if(e.target === childDiv){
+//         console.log("button click")
+//     }
+// })
+// when we use event.stopPropagation() than event will work only on that child not it will go to upward and not to downward.
+// when we use event.stopImmediatePropagation() than it will stop any other event that is happening on that element.
+// document.getElementById("parent")?.addEventListener("click", function(){
+//     console.log("Capturing: Parent clicked")
+// }, true)
+// document.getElementById("parent")?.addEventListener("click", function(){
+//     console.log("Bubbling: Parent clicked")
+// })
+// document.getElementById("child")?.addEventListener('click', function() {
+//     console.log("Button clicked");
+// });
+// FOR STOPING OTHER EVENT TO BE HAPPEN ON SAME ELEMENT
+// const btn = document.getElementById("clicked");
+// btn?.addEventListener("click", () => {
+//     console.log("click button happen");
+// });
+// btn?.addEventListener("mouseenter", (e) => {
+// Prevents any bubbling of 'mouseenter' event
+// e.stopImmediatePropagation();
+// console.log("mouse entered");
+// Optionally prevent click listener if needed:
+//     e.stopPropagation();  // This would prevent the click event if necessary
+// });

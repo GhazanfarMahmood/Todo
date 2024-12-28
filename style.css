@@ -47,8 +47,7 @@ header a .material-icons {font-size: 30px; color: #fff;}
 .mainContent .content, .allData {min-height: 200px; display: flex; align-items: center; justify-content: center;}
 .mainContent .content {color: gray; padding-inline: 15px;}
 .mainContent .content > :first-child {text-align: center;}
-.mainContent .active {border: 2px solid var(--primary-color);}
-
+.mainContent .input-field:has(input:focus-visible) {border: 2px solid var(--primary-color);}
 /* ----------------------- */
 /* Adding style to all data of todo list */
 /* ----------------------- */
