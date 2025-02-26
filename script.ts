@@ -1,15 +1,15 @@
-const inputData = document.querySelector("input")
-const addBtn = document.querySelector(".mainContent .input-field form > :last-child")
-const content = document.querySelector(".content")
-const form = document.querySelector("form")
-const dataToShow = document.querySelector(".allData")
-const deleteAllBtn = document.querySelector(".mainContent .delAll")
+const inputData = document.querySelector("input");
+const addBtn = document.querySelector(".mainContent .input-field form > :last-child");
+const content = document.querySelector(".content");
+const form = document.querySelector("form");
+const dataToShow = document.querySelector(".allData");
+const deleteAllBtn = document.querySelector(".mainContent .delAll");
 
 
 // ? this is used to prevent the page from reloading after submitting the data
 form?.addEventListener("submit", (e : Event): void =>{
-    e.preventDefault()
-})
+    e.preventDefault();
+});
 
 
 const array = [];
@@ -18,22 +18,23 @@ const array = [];
 
 // ? this function is used to iterate through each item of array and is used to show this data on UI of the site dynamically
 const addDataToDOM = () => {
- const value = array.map((item, index) => {
+ const value = array.map((item) => {
     return  `
-    <div class="box" id="${index}">
+    <div class="box" id="${item.key}">
         <div class="textContent">
             <div>
                 <span class="checked"></span>
             </div>
-            <h1>${item}</h1>
+            <h1>${item.value}</h1>
         </div>
         <div class="btnContent">
             <button><span class="material-icons">edit</span></button>
             <button><span class="material-icons">delete</span></button>
         </div>
     </div>`
- })
+ });
  dataToShow?.innerHTML = value.join("");
+ 
 
 //  this way is also valid as it work the same we define the below
 //  const parentCheckBox = document.querySelector(".mainContent .textContent > :first-child")
@@ -48,12 +49,16 @@ const addDataToDOM = () => {
 
 //   })
 
-}
+};
 
+let count = 0;
 //? addEvent Listener on add button to add data in a array
 addBtn?.addEventListener("click", () =>{
     if(inputData?.value.trim()){
-        array.push(inputData?.value)
+        const obj = {};
+        obj.key = count++;
+        obj.value = inputData.value
+        array.push(obj)
         inputData?.value = ""
         inputData.removeAttribute("required")
         // when you want to clear all input fields when you click on submit button then you have to invoke the reset function to form element
@@ -98,15 +103,60 @@ deleteAllBtn?.addEventListener("click", () =>{
 // !Now we will use event delegation to work with upper problem
 
 
-document.addEventListener("click", (e) => {
+document.addEventListener("click", (e : Event):void => {
     const textContent = e.target.closest(".mainContent .textContent");
     const checkbox = textContent.querySelector(".mainContent .textContent .checked");
     if (checkbox) {
-        textContent.classList.toggle("list")
+        textContent.classList.toggle("list");
         checkbox.classList.toggle("checkboxActive");
-    }
+    };
 });
 
+document.addEventListener("click", (e) =>{
+    const box = e.target.closest(".mainContent .box");
+    if(!box) return;
+    
+    const delBtn = e.target.closest(".btnContent > :nth-child(2)");
+    if(!delBtn) return;
+
+    const idOfBox = parseInt(box.id);
+
+    const index = array.findIndex((item) => item.key === idOfBox);
+
+    if(index !== -1){
+        array.splice(index, 1);
+        box.remove();
+    };
+
+    if(array.length === 0){
+        content.style.display = "flex";
+        dataToShow.style.display = "none";
+        deleteAllBtn.style.display = "none";
+        count = 0;
+    };
+});
+
+// here is one reason why you should not reset the count?
+// Would Resetting count to 0 Cause Issues?
+// Yes, if count resets to 0 when array.length === 0, it may cause duplicate IDs, leading to incorrect deletions.
+
+// Does This Cause Any Issues?
+// No, as long as you are clearing everything (both the UI and array) before resetting count, there won't be duplicate keys or conflicts.
+
+// This approach gives you better control over numbering while maintaining the correct behavior. ✅
+
+
+document.addEventListener("click", () =>{
+    
+})
+
+
+
+// ! the upper logic work well with for each loop but didn't work with map method check it 
+
+// ! now i will use id inside of block not in the if statement
+
+// ? --> Counter is not starting from 0 when we again start writing the item after deleting all item from an array
 
 
 // slice method doesn't alter the original array, it is basically used to return an array or portion of an array.
@@ -275,3 +325,32 @@ document.addEventListener("click", (e) => {
     // Optionally prevent click listener if needed:
 //     e.stopPropagation();  // This would prevent the click event if necessary
 // });
+
+// const oneFunc = (e) =>{
+//     e.stopImmediatePropagation()
+//     console.log("hello world")
+// }
+
+// const otherFunc = () =>{
+//     console.log("new hello world function but this will never work")
+// }
+
+// btn?.addEventListener("click", oneFunc)
+// btn?.addEventListener("click", otherFunc)
+
+
+// you were using slice method, this is wrong method as i want to remove the item from array instead of this i am getting that item by using its index and id and
+// things that i learn are using ___ method instead of slice method as because the slice method is only used for getting data from an array and than showing it instead of showing data other than the data that is remove from an array and slice method doesn't work in ending value have low index than the starting index means -5, -7 and 8, 5 and also for -7, 8 and not for work -1, -4
+// slice method doesn't modify the original array while on the other hand splice method modify the original array
+
+// second thing i learn is the splice method which modify the original array it is used to add and remove any type of item from original array like fruits.splice(2, 1) remove one item from an array at index 2 this doesn't work for condition in which both are negative as it doesn't remove negative item
+// fruits.splice(-2, -4, "banana", "Graphs", "live");
+// fruits.splice(-2, 0, "banana", "Graphs", "live");
+// in this condition it doesn't remove any type of item rather it only add the items
+
+
+// also learn the thing like parentElement, nextSibling, nextElementSibling, previousSibling and previousElementSibling
+
+// and also learn the method findIndex in an array to find index of particular item.
+// and difference between findIndex and filter is that findIndex only return index of an items on which a specific conditions true while on other hand filter method return the items on which a specific conditions true.
+// if no element matches than it return -1 while on the another hand in filter method if no element than it give an empty array.
