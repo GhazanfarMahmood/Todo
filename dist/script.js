@@ -121,7 +121,80 @@ document.addEventListener("click", (e) => {
 // Does This Cause Any Issues?
 // No, as long as you are clearing everything (both the UI and array) before resetting count, there won't be duplicate keys or conflicts.
 // This approach gives you better control over numbering while maintaining the correct behavior. ✅
-document.addEventListener("click", () => {
+const body = document.body;
+const dynamicalCreatedField = (value, id) => {
+    const bigBox = document.createElement("div");
+    const closeBtn = document.createElement("button");
+    closeBtn.classList.add("closeContent");
+    closeBtn.textContent = "X";
+    bigBox.appendChild(closeBtn);
+    bigBox.classList.add("boxed");
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("wrapper");
+    const form = document.createElement("form");
+    const inputField = document.createElement("input");
+    inputField.type = "text";
+    inputField.defaultValue = value;
+    inputField.id = id;
+    const button = document.createElement("button");
+    button.textContent = "Updated";
+    bigBox.appendChild(wrapper);
+    wrapper.appendChild(form);
+    form.appendChild(inputField);
+    form.appendChild(button);
+    return body.appendChild(bigBox);
+};
+document.addEventListener("click", (e) => {
+    const box = e.target.closest(".mainContent .box");
+    if (!box)
+        return;
+    const editBtn = e.target.closest(".btnContent > :first-child");
+    if (!editBtn)
+        return;
+    const id = parseInt(box.id);
+    const textContent = box.querySelector(".textContent > :nth-child(2)");
+    dynamicalCreatedField(textContent.textContent, id);
+});
+document.addEventListener("click", (e) => {
+    const wrapper = e.target.closest(".boxed .wrapper");
+    if (wrapper) {
+        e.stopPropagation();
+    }
+}, { capture: true });
+document.addEventListener("click", (e) => {
+    const getBackground = e.target.closest(".boxed");
+    if (!getBackground)
+        return;
+    getBackground.remove();
+});
+document.addEventListener("submit", (e) => {
+    const form = e.target.closest(".boxed .wrapper form");
+    const getBackground = e.target.closest(".boxed");
+    const input = form.querySelector("input");
+    const id = parseInt(input.id);
+    if (!form)
+        return;
+    e.preventDefault();
+    const againIndex = array.findIndex((item) => item.key === id);
+    if (againIndex !== -1) {
+        const specificPortion = array.find((item) => {
+            return item.key === id;
+        });
+        specificPortion.value = input.value;
+        console.log(specificPortion.key);
+        array.splice(againIndex, 1, specificPortion);
+    }
+    if (!getBackground)
+        return;
+    getBackground.remove();
+    const datas = document.querySelector(".mainContent .allData");
+    const allBoxes = datas === null || datas === void 0 ? void 0 : datas.querySelectorAll(".box");
+    allBoxes === null || allBoxes === void 0 ? void 0 : allBoxes.forEach((box) => {
+        if (parseInt(box.id) === id) {
+            const texted = box.querySelector(".textContent > :nth-child(2)");
+            texted === null || texted === void 0 ? void 0 : texted.textContent = input.value;
+        }
+    });
 });
 // ! the upper logic work well with for each loop but didn't work with map method check it 
 // ! now i will use id inside of block not in the if statement
