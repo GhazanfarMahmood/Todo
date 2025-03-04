@@ -91,12 +91,3 @@ header a .material-icons {font-size: 30px; color: #fff;}
 .allData .box-2 button:hover {background-color: var(--secondary-color); color: var(--primary-color); transition: .4s;}
 .mainContent .box-2 .textContent .checked {display: block;}
 .mainContent .box-2 .textContent {text-decoration: line-through; color: gray; font-style: italic;}
-
-/* ----------------------- */
-/* STYLE OF P TAG TO CHECK THE COMPUTED STYLING */
-/* ----------------------- */
-
-/* p {width: 400px; margin: 0 auto; padding: 20px; font: 2rem/2 sans-serif; text-align: center; background: purple; color: white;} */
-
-/* h4 {display: inline; font-size: 20px; height: 10px; position: relative;}
-h4::after {background-color: red; height: 4px; width: 100%; content: ""; bottom: 0; right: 0; position: absolute;} */
